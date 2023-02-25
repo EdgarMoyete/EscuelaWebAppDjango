@@ -1,0 +1,30 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Boleta
+{% endblock %}
+
+{% block script %}
+    {% load static %}
+    <script src="{% static 'main.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <h3>{{object.apellido_paterno}} {{object.apellido_materno}} {{object.nombres}}</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Materia</th>
+                <th scope="col">Calificacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{item.id_materia}}</td>
+                    <td>{{item.calificacion}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

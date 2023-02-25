@@ -1,0 +1,25 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Materias
+{% endblock %}
+
+{% block content %}
+    <a class="link-primary" href="{% url 'materias_create' %}">Crear</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Materia</th>
+                <th scope="col">Materia</th>
+                <th scope="col">ID Carrera</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{object.id_materia}}</td>
+                <td>{{object.materia}}</td>
+                <td>{{object.id_carrera}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

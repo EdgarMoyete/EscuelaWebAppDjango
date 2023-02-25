@@ -1,0 +1,22 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Carreras
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Carrera</th>
+                <th scope="col">Carrera</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{object.id_carrera}}</td>
+                <td>{{object.carrera}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

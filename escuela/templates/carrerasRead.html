@@ -1,0 +1,38 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Carreras
+{% endblock %}
+
+{% block content %}
+    <a class="link-primary" href="{% url 'carreras_create' %}">Crear</a>
+    <form action="{% url 'carreras_search' %}" method="GET">
+        <label for="id_carrera">ID Carrera</label>
+        <input
+            type="text"
+            class="form-control"
+            name="id">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Carrera</th>
+                <th scope="col">Carrera</th>
+                <th scope="col">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{item.id_carrera}}</td>
+                    <td>{{item.carrera}}</td>
+                    <td>
+                        <a class="link-primary" href="{% url 'carreras_update' item.id_carrera %}">Update</a>
+                        <a class="link-danger" href="{% url 'carreras_delete' item.id_carrera %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

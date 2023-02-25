@@ -1,0 +1,13 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Confirmar
+{% endblock %}
+
+{% block content %}
+    <h2>Desea eliminar a {{ object }}?</h2>
+    <form method="post">{% csrf_token %}
+        <input type="submit" class="btn btn-danger" name="btn" value="Confirmar">
+        <a href="{% url 'carreras_read' %}">Cancelar</a>
+    </form>
+{% endblock %}

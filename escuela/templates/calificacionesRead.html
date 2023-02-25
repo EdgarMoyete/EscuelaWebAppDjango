@@ -1,0 +1,58 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Calificaciones
+{% endblock %}
+
+{% block content %}
+    <a class="link-primary" href="{% url 'calificaciones_create' %}">Crear</a>
+    <form action="{% url 'calificaciones_search' %}" method="GET">
+        <label for="id_calificacion">ID Calificacion</label>
+        <input
+            type="text"
+            class="form-control"
+            name="id">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <form action="{% url 'mayores_calificaciones' %}" method="GET">
+        <label for="umbral">Umbral</label>
+        <input
+            type="text"
+            class="form-control"
+            name="umbral">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <form action="{% url 'boleta' %}" method="GET">
+        <label for="id_alumno">ID Alumno</label>
+        <input
+            type="text"
+            class="form-control"
+            name="id">
+        <input type="submit" class="btn btn-success" value="Boleta">
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Calificacion</th>
+                <th scope="col">Calificacion</th>
+                <th scope="col">ID Alumno</th>
+                <th scope="col">ID Materia</th>
+                <th scope="col">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{item.id_calificacion}}</td>
+                    <td>{{item.calificacion}}</td>
+                    <td>{{item.id_alumno}}</td>
+                    <td>{{item.id_materia}}</td>
+                    <td>
+                        <a class="link-primary" href="{% url 'calificaciones_update' item.id_calificacion %}">Update</a>
+                        <a class="link-danger" href="{% url 'calificaciones_delete' item.id_calificacion %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

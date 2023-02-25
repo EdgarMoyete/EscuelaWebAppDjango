@@ -1,0 +1,40 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Especialidades
+{% endblock %}
+
+{% block content %}
+    <a class="link-primary" href="{% url 'especialidades_create' %}">Crear</a>
+    <form action="{% url 'especialidades_search' %}" method="GET">
+        <label for="id_especialidad">ID Especialidad</label>
+        <input
+            type="text"
+            class="form-control"
+            name="id">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Especialidad</th>
+                <th scope="col">Especialidad</th>
+                <th scope="col">ID Carrera</th>
+                <th scope="col">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{item.id_especialidad}}</td>
+                    <td>{{item.especialidad}}</td>
+                    <td>{{item.id_carrera}}</td>
+                    <td>
+                        <a class="link-primary" href="{% url 'especialidades_update' item.id_especialidad %}">Update</a>
+                        <a class="link-danger" href="{% url 'especialidades_delete' item.id_especialidad %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

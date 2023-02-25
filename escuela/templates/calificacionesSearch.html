@@ -1,0 +1,26 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Calificaciones
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Calificacion</th>
+                <th scope="col">Calificacion</th>
+                <th scope="col">ID Alumno</th>
+                <th scope="col">ID Materia</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{object.id_calificacion}}</td>
+                <td>{{object.calificacion}}</td>
+                <td>{{object.id_alumno}}</td>
+                <td>{{object.id_materia}}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

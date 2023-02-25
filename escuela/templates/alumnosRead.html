@@ -1,0 +1,58 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Alumnos
+{% endblock %}
+
+{% block content %}
+    <a class="link-primary" href="{% url 'alumnos_create' %}">Crear</a>
+    <form action="{% url 'alumnos_search' %}" method="GET">
+        <label for="id_alumno">ID Alumno</label>
+        <input
+            type="text"
+            class="form-control"
+            name="id">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <form action="{% url 'buscar_curp' %}" method="GET">
+        <label for="curp">CURP</label>
+        <input
+            type="text"
+            class="form-control"
+            name="curp">
+        <input type="submit" class="btn btn-primary">
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID Alumno</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Nombres</th>
+                <th scope="col">Sexo</th>
+                <th scope="col">CURP</th>
+                <th scope="col">ID Carrera</th>
+                <th scope="col">ID Especialidad</th>
+                <th scope="col">Opcion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in object_list %}
+                <tr>
+                    <td>{{item.id_alumno}}</td>
+                    <td>{{item.apellido_paterno}}</td>
+                    <td>{{item.apellido_materno}}</td>
+                    <td>{{item.nombres}}</td>
+                    <td>{{item.sexo}}</td>
+                    <td>{{item.curp}}</td>
+                    <td>{{item.id_carrera}}</td>
+                    <td>{{item.id_especialidad}}</td>
+                    <td>
+                        <a class="link-primary" href="{% url 'alumnos_update' item.id_alumno %}">Update</a>
+                        <a class="link-danger" href="{% url 'alumnos_delete' item.id_alumno %}">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

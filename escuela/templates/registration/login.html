@@ -1,0 +1,52 @@
+{% extends "baseGeneric.html" %}
+
+{% block title %}
+    Iniciar Sesion
+{% endblock %}
+
+{% block content %}
+    <h1>Escuela</h1>
+    {% if form.errors %}
+        <p class="text-danger">
+            Su nombre de usuario y contraseña no coinciden. Inténtalo de nuevo
+        </p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p class="text-danger">
+                Su cuenta no tiene acceso a esta página.
+                Para proceder, por favor inicie sesión con una cuenta que tenga acceso
+            </p>
+        {% else %}
+            <p class="text-danger">
+                Inicie sesión para ver esta página
+            </p>
+        {% endif %}
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+        <!-- <div>
+            <td>{{ form.username.label_tag }}</td>
+            <td>{{ form.username }}</td>
+        </div>
+        <div>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+        </div> -->
+        <div class="form-group">
+            <label for="usuario">Usuario:</label>
+            {{ form.username }}
+        </div>
+        <div class="form-group">
+            <label for="pass">Contraseña:</label>
+            {{ form.password }}
+        </div>
+
+        <div>
+            <input class="btn btn-primary" type="submit" value="Iniciar Sesión" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </div>
+    </form>
+{% endblock %} 
