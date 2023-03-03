@@ -11,6 +11,8 @@
 
 {% block content %}
     <h3>{{object.apellido_paterno}} {{object.apellido_materno}} {{object.nombres}}</h3>
+    <a href="{% url 'csv_boleta' object.id_alumno %}" class="btn btn-success">Descargar CSV</a>
+    <a href="{% url 'pdf_boleta' object.id_alumno %}" class="btn btn-danger">Descargar PDF</a>
     <table class="table">
         <thead>
             <tr>

@@ -3,6 +3,10 @@ from django.views.generic import CreateView, ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import HttpResponse
+import csv
+from django.template.loader import get_template
+from xhtml2pdf import pisa
 
 from .models import Carreras, Especialidades, Materias, Alumnos, Calificaciones
 from .forms import CarreraForm, EspecialidadForm, MateriaForm, AlumnoForm, CalificacionForm
@@ -282,3 +286,35 @@ def boleta(request):
             "object": alumno
         }
     )
+
+def csv_boleta(request, id_alumno):
+    calificaciones = Calificaciones.objects.filter(id_alumno=id_alumno)
+    response = HttpResponse(
+        content_type='text/csv',
+        headers={'Content-Disposition': 'attachment; filename="boleta.csv"'},
+    )
+    writer = csv.writer(response)
+    writer.writerow([
+        'Materia',
+        'Calificacion'
+    ])
+    for item in calificaciones:
+        writer.writerow([item.id_materia, item.calificacion])
+    return response
+
+def pdf_boleta(request, id_alumno):
+    calificaciones = Calificaciones.objects.filter(id_alumno=id_alumno)
+    # Create a Django response object, and specify content_type as pdf
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'attachment; filename="boleta.pdf"'
+    # find the template and render it.
+    template = get_template("boletaPdf.html")
+    html = template.render(
+        {"object_list": calificaciones}
+    )
+    # create a pdf
+    pisa_status = pisa.CreatePDF(html, dest=response)# link_callback=link_callback
+    # if error then show some funny view
+    if pisa_status.err:
+       return HttpResponse('We had some errors <pre>' + html + '</pre>')
+    return response

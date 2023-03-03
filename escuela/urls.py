@@ -6,7 +6,7 @@ from .views import (
     MateriaCreate, MateriaList, MateriaUpdate, MateriaDelete, materia_buscar_x_id,
     AlumnoCreate, AlumnoList, AlumnoUpdate, AlumnoDelete, alumno_buscar_x_id,
     CalificacionCreate, CalificacionList, CalificacionUpdate, CalificacionDelete, calificacion_buscar_x_id,
-    buscar_x_curp, mayores_calificaciones, boleta
+    buscar_x_curp, mayores_calificaciones, boleta, csv_boleta, pdf_boleta
 )
 
 urlpatterns = [
@@ -45,4 +45,6 @@ urlpatterns = [
     path('buscar_curp/', buscar_x_curp, name='buscar_curp'),
     path('mayores_calificaciones/', mayores_calificaciones, name='mayores_calificaciones'),
     path('boleta/', boleta, name='boleta'),
+    path('csv_boleta/<id_alumno>/', csv_boleta, name='csv_boleta'),
+    path('pdf_boleta/<id_alumno>/', pdf_boleta, name='pdf_boleta'),
 ]
