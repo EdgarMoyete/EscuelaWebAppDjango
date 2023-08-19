@@ -25,10 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True # dev
+# DEBUG = False # prod
 
-ALLOWED_HOSTS = []
-
+# ALLOWED_HOSTS = [] # dev
+ALLOWED_HOSTS = ['https://web-production-334b.up.railway.app']
 
 # Application definition
 
@@ -128,3 +129,5 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CSRF_TRUSTED_ORIGINS = ['https://web-production-334b.up.railway.app']
