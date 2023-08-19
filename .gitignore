@@ -1,3 +1,4 @@
 __pycache__/
 EscuelaWebApp/config.py
 .env
+/staticfiles
