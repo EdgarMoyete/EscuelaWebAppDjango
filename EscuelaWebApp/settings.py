@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 from decouple import config
 
@@ -29,7 +30,7 @@ DEBUG = True # dev
 # DEBUG = False # prod
 
 # ALLOWED_HOSTS = [] # dev
-ALLOWED_HOSTS = ['https://web-production-334b.up.railway.app']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -124,10 +125,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+# STATICFILES_DIRS = [
+#    os.path.join(BASE_DIR, 'buros/static/')
+# ]
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-334b.up.railway.app']
+# CSRF_TRUSTED_ORIGINS = ['https://web-production-334b.up.railway.app']
