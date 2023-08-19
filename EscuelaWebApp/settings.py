@@ -30,7 +30,7 @@ DEBUG = True # dev
 # DEBUG = False # prod
 
 # ALLOWED_HOSTS = [] # dev
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*'] # prod
 
 # Application definition
 
@@ -135,4 +135,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# CSRF_TRUSTED_ORIGINS = ['https://web-production-334b.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-334b.up.railway.app']
